@@ -101,27 +101,31 @@ class PreferencesMenu extends Page
     createPrefItemCheckbox('Downscroll', 'If enabled, this will make the notes move downwards.', function(value:Bool):Void {
       Preferences.downscroll = value;
     }, Preferences.downscroll);
-    createPrefItemCheckbox('Flashing Lights', 'If disabled, it will dampen flashing effects. Useful for people with photosensitive epilepsy.', function(value:Bool):Void {
-      Preferences.flashingLights = value;
-    }, Preferences.flashingLights);
-    createPrefItemCheckbox('Camera Zooms', 'If disabled, camera stops bouncing to the song.', function(value:Bool):Void {
+    createPrefItemCheckbox('Flashing Lights', 'If disabled, it will dampen flashing effects. Useful for people with photosensitive epilepsy.',
+      function(value:Bool):Void {
+        Preferences.flashingLights = value;
+      }, Preferences.flashingLights);
+    createPrefItemCheckbox('Camera Zooms', 'If disabled, camera will not bounce to the song.', function(value:Bool):Void {
       Preferences.zoomCamera = value;
     }, Preferences.zoomCamera);
     createPrefItemCheckbox('Debug Display', 'If enabled, FPS and other debug stats will be displayed.', function(value:Bool):Void {
       Preferences.debugDisplay = value;
     }, Preferences.debugDisplay);
+    createPrefItemCheckbox('Play Miss Sound', 'If enabled, the miss sound will play when the player misses a note.', function(value:Bool):Void {
+      Preferences.playMissSound = value;
+    }, Preferences.playMissSound);
     createPrefItemCheckbox('Auto Pause', 'If enabled, game automatically pauses when it loses focus.', function(value:Bool):Void {
       Preferences.autoPause = value;
     }, Preferences.autoPause);
 
     #if web
-    createPrefItemCheckbox('Unlocked Framerate', 'Enable to unlock the framerate', function(value:Bool):Void {
+    createPrefItemCheckbox('Unlocked Framerate', 'If enabled, the framerate will be unlocked to as high as possible.', function(value:Bool):Void {
       Preferences.unlockedFramerate = value;
     }, Preferences.unlockedFramerate);
     #else
-    createPrefItemNumber('FPS', 'The maximum framerate that the game targets', function(value:Float) {
+    createPrefItemNumber('FPS', 'The maximum framerate that the game targets.', function(value:Float) {
       Preferences.framerate = Std.int(value);
-    }, null, Preferences.framerate, 30, 300, 5, 0);
+    }, null, Preferences.framerate, 15, 300, 5, 0);
     #end
   }
 
